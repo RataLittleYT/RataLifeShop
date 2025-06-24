@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RataLife's Shop | Cheats, Mejoras y Más</title>
+    <link rel="icon" href="https://i.ibb.co/Wq0BkYL/imagen-2025-06-24-150511834.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-red: #ff0055;
+            --neon-pink: #ff00aa;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --light-bg: #f0f0f0;
+            --lighter-bg: #ffffff;
+            --text-dark: #eeeeee;
+            --text-light: #222222;
+            --transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        body.light-mode {
+            background-color: var(--light-bg);
+            color: var(--text-light);
+        }
+
+        /* Efecto de partículas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* Header y navegación */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 10, 0.7);
+            border-bottom: 1px solid rgba(255, 0, 85, 0.2);
+            transition: var(--transition);
+        }
+
+        body.light-mode header {
+            background-color: rgba(240, 240, 240, 0.7);
+            border-bottom: 1px solid rgba(255, 0, 85, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--neon-red);
+            text-shadow: 0 0 10px var(--neon-red), 0 0 20px var(--neon-red);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 15px var(--neon-red), 0 0 30px var(--neon-red), 0 0 45px var(--neon-red);
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 5px var(--neon-red));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            position: relative;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        body.light-mode .nav-links a {
+            color: var(--text-light);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--neon-red);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            box-shadow: 0 0 10px var(--neon-red), 0 0 20px var(--neon-red);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: 30px;
+        }
+
+        body.light-mode .theme-toggle {
+            color: var(--text-light);
+        }
+
+        .theme-toggle:hover {
+            color: var(--neon-red);
+            transform: rotate(30deg) scale(1.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        body.light-mode .menu-toggle {
+            color: var(--text-light);
+        }
+
+        .menu-toggle:hover {
+            color: var(--neon-red);
+        }
+
+        /* Contenido principal */
+        main {
+            margin-top: 100px;
+            padding: 0 10%;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 80px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero {
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--neon-red), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 0, 85, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--neon-red), var(--neon-pink));
+            color: white;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 0, 85, 0.6);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 0, 85, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        body.light-mode .feature-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 0, 85, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.3);
+            border: 1px solid rgba(255, 0, 85, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--neon-red);
+            text-shadow: 0 0 10px var(--neon-red);
+            animation: pulse 2s infinite;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--neon-red);
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Sección About */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.3);
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 0, 85, 0.5);
+        }
+
+        .discord-icon {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 3rem;
+            color: #5865F2;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px #5865F2);
+        }
+
+        /* Sección Partners */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .partner-card {
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 0, 85, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body.light-mode .partner-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 0, 85, 0.2);
+        }
+
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.3);
+            border: 1px solid rgba(255, 0, 85, 0.3);
+        }
+
+        .partner-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid var(--neon-red);
+            box-shadow: 0 0 20px var(--neon-red);
+            transition: var(--transition);
+        }
+
+        .partner-card:hover .partner-logo {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 0 30px var(--neon-red);
+        }
+
+        .partner-name {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--neon-red);
+        }
+
+        .partner-desc {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Sección Discord */
+        .discord-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .discord-widget {
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 50px;
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.3);
+            border: 1px solid rgba(255, 0, 85, 0.2);
+            transition: var(--transition);
+        }
+
+        .discord-widget:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 0, 85, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.8);
+            padding: 30px 10%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 0, 85, 0.2);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        body.light-mode footer {
+            background: rgba(240, 240, 240, 0.8);
+            border-top: 1px solid rgba(255, 0, 85, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        body.light-mode .social-link {
+            color: var(--text-light);
+        }
+
+        .social-link:hover {
+            color: var(--neon-red);
+            transform: translateY(-5px);
+            text-shadow: 0 0 10px var(--neon-red);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Efecto de scroll personalizado */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        body.light-mode ::-webkit-scrollbar-track {
+            background: var(--light-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-red);
+            border-radius: 5px;
+            box-shadow: 0 0 10px var(--neon-red);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 10px var(--neon-red);
+            }
+            50% {
+                transform: scale(1.1);
+                text-shadow: 0 0 20px var(--neon-red);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 10px var(--neon-red);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px var(--neon-red), 0 0 20px var(--neon-red);
+            }
+            to {
+                text-shadow: 0 0 15px var(--neon-red), 0 0 30px var(--neon-red), 0 0 45px var(--neon-red);
+            }
+        }
+
+        @keyframes neon-border {
+            0% {
+                box-shadow: 0 0 5px var(--neon-red), inset 0 0 5px var(--neon-red);
+            }
+            100% {
+                box-shadow: 0 0 20px var(--neon-red), inset 0 0 10px var(--neon-red);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(10, 10, 10, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: var(--transition);
+                backdrop-filter: blur(20px);
+            }
+
+            body.light-mode .nav-links {
+                background: rgba(240, 240, 240, 0.95);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            main {
+                padding: 0 5%;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efecto de partículas -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/Wq0BkYL/imagen-2025-06-24-150511834.png" alt="RataLife Logo">
+            RataLife's Shop
+        </a>
+
+        <nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#partners">Partners</a></li>
+                <li><a href="#discord">Discord</a></li>
+            </ul>
+        </nav>
+
+        <button class="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Sección Inicio -->
+        <section id="home" class="hero">
+            <h1>RataLife's Shop</h1>
+            <p>La tienda definitiva para cheats, mejoras, interfaces gráficas personalizadas y desarrollo web premium. Únete a nuestra comunidad de élite y lleva tu experiencia al siguiente nivel.</p>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Cheats de Alto Rendimiento</h3>
+                    <p>Nuestros cheats están optimizados para ofrecer el máximo rendimiento sin comprometer tu seguridad.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Interfaces Personalizadas</h3>
+                    <p>Diseños únicos y personalizables para adaptarse a tu estilo y preferencias.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Desarrollo Web Premium</h3>
+                    <p>Sitios web innovadores con las últimas tecnologías para destacar en la red.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección About -->
+        <section id="about">
+            <h2 class="section-title">About <span>RataLife</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>¡Bienvenido al servidor de Discord más exclusivo dedicado a la venta de cheats de alto nivel, mejoras de rendimiento, interfaces gráficas personalizadas y desarrollo web premium!</p>
+                    <p>En RataLife's Shop no solo ofrecemos productos, sino una experiencia completa. Nuestro equipo de desarrolladores expertos trabaja incansablemente para brindarte soluciones innovadoras que superen tus expectativas.</p>
+                    <p>Únete a nuestra comunidad de más de 10,000 miembros activos donde compartimos consejos, actualizaciones exclusivas y ofertas especiales que no encontrarás en ningún otro lugar.</p>
+                    <a href="https://discord.gg/vbnxmEuXS5" class="btn">Únete a Discord</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://i.ibb.co/Wq0BkYL/imagen-2025-06-24-150511834.png" alt="Servidor Discord">
+                    <i class="fab fa-discord discord-icon"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Partners -->
+        <section id="partners">
+            <h2 class="section-title">Nuestros <span>Partners</span></h2>
+            <p>Colaboramos con los mejores en la industria para ofrecerte productos y servicios de calidad excepcional.</p>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <img src="https://i.pinimg.com/1200x/97/20/20/972020862c2b049e57fc10173651fd62.jpg" alt="Partner 1" class="partner-logo">
+                    <h3 class="partner-name">Nova Blaze</h3>
+                    <p class="partner-desc">Proveedor líder de cheats indetectables con actualizaciones constantes.</p>
+                    <a href="https://discord.gg/C8AE4ft9hN" class="btn">Unirse</a>
+                </div>
+                <div class="partner-card">
+                    <img src="https://i.pinimg.com/736x/fc/51/63/fc5163fc8fae1d30735959ea83a1cc32.jpg" alt="Partner 2" class="partner-logo">
+                    <h3 class="partner-name">Oxcy Shop</h3>
+                    <p class="partner-desc">Interfaces gráficas personalizadas para juegos y aplicaciones.</p>
+                    <a href="https://discord.gg/MRpKn5T2bs" class="btn">Unirse</a>
+                </div>
+                <div class="partner-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBh1lUgBci4591adXfO_aCDVerBXW3vWFrwg&s" alt="Partner 3" class="partner-logo">
+                    <h3 class="partner-name">Alta Products</h3>
+                    <p class="partner-desc">Desarrollo web de vanguardia para proyectos ambiciosos.</p>
+                    <a href="https://discord.gg/aNMaFQQcuG" class="btn">Unirse</a>
+                </div>
+                <div class="partner-card">
+                    <img src="https://i.redd.it/u791dt1oggjb1.png" alt="Partner 4" class="partner-logo">
+                    <h3 class="partner-name">nozaZIN</h3>
+                    <p class="partner-desc">Optimización de rendimiento para juegos competitivos.</p>
+                    <a href="https://discord.gg/vbnxmEuXS5" class="btn">Unirse</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Discord -->
+        <section id="discord">
+            <h2 class="section-title">Únete a Nuestro <span>Discord</span></h2>
+            <p>Conéctate con nuestra comunidad para obtener soporte exclusivo, actualizaciones y ofertas especiales.</p>
+            <div class="discord-container">
+                <div class="discord-widget">
+                    <iframe src="https://discord.com/widget?id=1385784574440767588&theme=dark" width="100%" height="100%" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                </div>
+                <a href="https://discord.gg/vbnxmEuXS5" class="btn" style="margin-top: 30px;">Invitar a tu Servidor</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://discord.gg/vbnxmEuXS5" class="social-link"><i class="fab fa-discord"></i></a>
+            <a href="https://www.instagram.com/rat4life.rar/" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://ratalittleyt.github.io/RataLife/" class="social-link"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="copyright">© 2023 RataLife's Shop. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Tema claro/oscuro
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // Verificar preferencia del usuario
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            body.classList.add('light-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+
+        // Menú móvil
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Animación de scroll
+        const sections = document.querySelectorAll('section');
+
+        function checkScroll() {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
+        // Efecto de partículas
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ff0055"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ff0055",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Efecto de escritura para el título
+        const heroTitle = document.querySelector('.hero h1');
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                heroTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        setTimeout(typeWriter, 1000);
+    </script>
+</body>
+</html>
